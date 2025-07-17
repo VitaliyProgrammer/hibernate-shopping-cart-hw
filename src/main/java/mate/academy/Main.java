@@ -92,27 +92,14 @@ public class Main {
         System.out.println("Ticket for movie session added to shopping cart.");
 
         ShoppingCart shoppingCart = shoppingCartService.getByUser(user);
-        // Створення квитка
-        Ticket ticket = new Ticket();
-        ticket.setUser(user);
-        ticket.setMovieSession(tomorrowMovieSession);
-        ticket.setShoppingCart(shoppingCart);
-
-        // Додаємо квиток до корзини
-        shoppingCart.getTickets().add(ticket);
-
-        // Зберігаємо всю корзину з каскадом
-        ticket.setShoppingCart(shoppingCart);
+        System.out.println("Ticket in the shopping cart.");
 
         ShoppingCartDao shoppingCartDao =
                 (ShoppingCartDao) injector.getInstance(ShoppingCartDao.class);
         shoppingCartDao.update(shoppingCart);
         shoppingCart = shoppingCartService.getByUser(user);
-        System.out.println("Shopping cart saved with all tickets.");
-
+        
         System.out.println("Final shopping cart state:\n" + shoppingCart);
-
-        System.out.println("Final shopping cart state: ");
         System.out.println("Cart ID: " + shoppingCart.getId());
         System.out.println("User: " + shoppingCart.getUser().getEmail());
         System.out.println("Tickets in cart: ");

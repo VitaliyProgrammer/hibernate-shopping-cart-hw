@@ -29,6 +29,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
         // Отримуємо кошик користувача
         ShoppingCart shoppingCart = getByUser(user);
+        ticket.setShoppingCart(shoppingCart);
 
         // Додаємо квиток до списку квитків
         shoppingCart.getTickets().add(ticket);
